@@ -13,11 +13,9 @@ const Books = ({ isReady, books }) => {
                             {book.author}
                         </Card.Description>
                     </Card.Content>
-                    <Card.Content extra>
-                        <a>
+                    <Card.Content extra>     
                             <Icon name='rub' />
                             {book.price}
-                        </a>
                     </Card.Content>
                 </Card>)}
             </Card.Group>

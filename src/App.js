@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { Container } from 'semantic-ui-react';
 
 import { setBooks } from "./actions/setBooks"
 import TopMenu from './components/TopMenu'
-import { Container } from 'semantic-ui-react';
 import Books from './components/Books';
+import './App.scss'
+
 
 const App = (props) => {
   const { setBooks, books, isReady } = props;
@@ -17,7 +19,7 @@ const App = (props) => {
   return (
     <Container>
       <TopMenu />
-      <Books books={books} isReady={isReady}/>
+      <Books books={books} isReady={isReady} />
     </Container>
   )
 }
