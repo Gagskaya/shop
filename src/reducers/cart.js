@@ -2,7 +2,7 @@ const initialState = {
     books : []
 }
 
-export const cartReducer = (state = initialState,action) => {
+export const cart = (state = initialState,action) => {
     switch (action.type) {
         case "ADD_BOOKS":
             return {

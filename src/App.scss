@@ -1,6 +1,10 @@
 body {
     margin-top: 20px;
 }
-.menu {
-    margin-top: 20px;
+.secondary {
+    .item {
+        &.active {
+            font-size: 15px;
+        }
+    }
 }

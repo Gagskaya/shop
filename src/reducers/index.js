@@ -1,8 +1,10 @@
-import { combineReducers} from 'redux'
-import {booksReducer} from './booksReducer'
-import {cartReducer} from './cartReducer'
+import { combineReducers } from 'redux'
+import { books } from './books'
+import { cart } from './cart'
+import { filter } from './filter'
 
 export const rootReducer = combineReducers({
-    booksReducer,
-    cartReducer
+    books,
+    cart,
+    filter
 })

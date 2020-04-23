@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-
 import { Menu } from 'semantic-ui-react'
+
 export const Filter = ({ setFilter }) => {
     const [activeItem, setActiveItem] = useState('all');
     const onClick = (name) => {
@@ -13,11 +13,6 @@ export const Filter = ({ setFilter }) => {
                 onClick={() => onClick('all')}
                 active={activeItem === 'all'}>
                 Все
-            </Menu.Item>
-            <Menu.Item name='popular'
-                onClick={() => onClick('popular')}
-                active={activeItem === 'popular'}>
-                Популярные
             </Menu.Item>
             <Menu.Item name='high-price'
                 onClick={() => onClick('high-price')}
@@ -34,6 +29,7 @@ export const Filter = ({ setFilter }) => {
                 active={activeItem === 'author'}>
                 Автор
             </Menu.Item>
+
         </Menu>
     )
 }

@@ -1,7 +1,8 @@
 import React from 'react'
 import { Card, Icon, Image } from 'semantic-ui-react'
 
-const Books = ({ isReady, books }) => {
+
+export const Books = ({ isReady, books }) => {
     return (
         !isReady ? "Загрузка..." :
             <Card.Group itemsPerRow={4}>
@@ -13,9 +14,9 @@ const Books = ({ isReady, books }) => {
                             {book.author}
                         </Card.Description>
                     </Card.Content>
-                    <Card.Content extra>     
-                            <Icon name='rub' />
-                            {book.price}
+                    <Card.Content extra>
+                        <Icon name='rub' />
+                        {book.price}
                     </Card.Content>
                 </Card>)}
             </Card.Group>
@@ -23,4 +24,3 @@ const Books = ({ isReady, books }) => {
     )
 
 }
-export default Books;

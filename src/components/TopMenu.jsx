@@ -2,8 +2,7 @@ import React from 'react'
 import { Menu } from 'semantic-ui-react'
 
 
-
-const TopMenu = () => {
+export const TopMenu = () => {
     return (
         <Menu>
             <Menu.Item
@@ -23,4 +22,3 @@ const TopMenu = () => {
         </Menu>
     )
 }
-export default TopMenu;
