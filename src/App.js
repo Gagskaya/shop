@@ -13,7 +13,7 @@ import { Books } from './components/Books';
 import { Sort } from './components/Sort';
 
 
-const sortBy = (books, sortBy) => {
+const sortBooks = (books, sortBy) => {
   switch (sortBy) {
     case 'all':
       return books;
@@ -28,8 +28,14 @@ const sortBy = (books, sortBy) => {
   }
 }
 
+const filterBooks = (books, filterBy) => books.filter(book => book.title.toLowerCase().indexOf(filterBy.toLowerCase()) >= 0 || book.author.toLowerCase().indexOf(filterBy.toLowerCase()) >= 0);
+
+const searchBooks = (books, sortBy, filterBy) => {
+  return sortBooks(filterBooks(books, filterBy), sortBy);
+}
 const App = props => {
-  const { books, isReady, setBooks, setSort, setFilter, sortBy, filterBy } = props;
+  const { books, isReady, setBooks, setSort, setFilter, sortBy, filterBy, totalPrice, totalAmount } = props;
+  console.log(books)
   useEffect(() => {
     axios.get('/books.json').then(({ data }) => {
       setBooks(data);
@@ -37,16 +43,18 @@ const App = props => {
   }, [setBooks])
   return (
     <Container>
-      <TopMenu />
+      <TopMenu totalPrice={totalPrice} totalAmount={totalAmount} />
       <Sort setSort={setSort} setFilter={setFilter} sortBy={sortBy} filterBy={filterBy} />
       <Books books={books} isReady={isReady} />
     </Container>
   )
 }
-const mapStateToProps = ({ books, sort, filter }) => ({
-  books: sortBy(books.items, sort.sortBy),
+const mapStateToProps = ({ books, sort, filter, cart }) => ({
+  books: books.items && searchBooks(books.items, sort.sortBy, filter.filterBy),
   isReady: books.isReady,
   filterBy: filter.filterBy,
-  sortBy: sort.sortBy
+  sortBy: sort.sortBy,
+  totalPrice: cart.books.reduce((total, book) => total + book.price, 0),
+  totalAmount: cart.books.length
 })
 export default connect(mapStateToProps, { setBooks, setSort, setFilter })(App);
