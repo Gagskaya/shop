@@ -1,13 +1,13 @@
 const initialState = {
-    filterBy: ''
+    sortBy: ''
 }
 
-export const filter = (state = initialState, action) => {
+export const sort = (state = initialState, action) => {
     switch (action.type) {
-        case "SET_FILTER":
+        case "SET_SORT":
             return {
                 ...state,
-                filterBy: action.payload
+                sortBy: action.payload
             }
         default:
             return state;

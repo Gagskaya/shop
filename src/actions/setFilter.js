@@ -1,8 +1,4 @@
-export const setFilter = filter => ({
+export const setFilter = value => ({
     type: 'SET_FILTER',
-    payload: filter
-})
-export const setQuery = value => ({
-    type: 'SET_QUERY',
     payload: value
 })

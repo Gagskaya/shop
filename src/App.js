@@ -5,14 +5,16 @@ import { Container } from 'semantic-ui-react';
 import orderBy from 'lodash/orderBy'
 
 import './App.scss'
-import { setBooks } from "./actions/setBooks"
+import { setBooks } from "./actions/setBooks";
+import { setSort } from './actions/setSort';
 import { setFilter } from './actions/setFilter';
-import { TopMenu } from './components/TopMenu'
+import { TopMenu } from './components/TopMenu';
 import { Books } from './components/Books';
-import { Filter } from './components/Filter';
+import { Sort } from './components/Sort';
 
-const sortBy = (books, filterBy) => {
-  switch (filterBy) {
+
+const sortBy = (books, sortBy) => {
+  switch (sortBy) {
     case 'all':
       return books;
     case 'high-price':
@@ -25,9 +27,9 @@ const sortBy = (books, filterBy) => {
       return books;
   }
 }
-const App = (props) => {
-  const { books, isReady, setBooks, setFilter } = props;
-  console.log(props)
+
+const App = props => {
+  const { books, isReady, setBooks, setSort, setFilter, sortBy, filterBy } = props;
   useEffect(() => {
     axios.get('/books.json').then(({ data }) => {
       setBooks(data);
@@ -36,13 +38,15 @@ const App = (props) => {
   return (
     <Container>
       <TopMenu />
-      <Filter setFilter={setFilter} />
+      <Sort setSort={setSort} setFilter={setFilter} sortBy={sortBy} filterBy={filterBy} />
       <Books books={books} isReady={isReady} />
     </Container>
   )
 }
-const mapStateToProps = ({ books, filter }) => ({
-  books: sortBy(books.items, filter.filterBy),
-  isReady: books.isReady
+const mapStateToProps = ({ books, sort, filter }) => ({
+  books: sortBy(books.items, sort.sortBy),
+  isReady: books.isReady,
+  filterBy: filter.filterBy,
+  sortBy: sort.sortBy
 })
-export default connect(mapStateToProps, { setBooks, setFilter })(App);
+export default connect(mapStateToProps, { setBooks, setSort, setFilter })(App);

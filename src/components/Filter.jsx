@@ -1,35 +1,12 @@
-import React, { useState } from 'react'
-import { Menu } from 'semantic-ui-react'
+import React from 'react'
+import { Menu, Input } from 'semantic-ui-react'
 
-export const Filter = ({ setFilter }) => {
-    const [activeItem, setActiveItem] = useState('all');
-    const onClick = (name) => {
-        setActiveItem(name);
-        setFilter(name);
-    }
+
+export const Filter = ({ setFilter, filterBy }) => {
     return (
-        <Menu secondary>
-            <Menu.Item name='all'
-                onClick={() => onClick('all')}
-                active={activeItem === 'all'}>
-                Все
-            </Menu.Item>
-            <Menu.Item name='high-price'
-                onClick={() => onClick('high-price')}
-                active={activeItem === 'high-price'}>
-                Цена (дорогие)
-            </Menu.Item>
-            <Menu.Item name='low-price'
-                onClick={() => onClick('low-price')}
-                active={activeItem === 'low-price'}>
-                Цена (дешевые)
-            </Menu.Item>
-            <Menu.Item name='author'
-                onClick={() => onClick('author')}
-                active={activeItem === 'author'}>
-                Автор
-            </Menu.Item>
-
-        </Menu>
+        <Menu.Item>
+            <Input placeholder="Введите запрос" value={filterBy} onChange={e => setFilter(e.target.value)} >
+            </Input>
+        </Menu.Item>
     )
 }
