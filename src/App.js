@@ -8,6 +8,7 @@ import './App.scss'
 import { setBooks } from "./actions/setBooks";
 import { setSort } from './actions/setSort';
 import { setFilter } from './actions/setFilter';
+import { addBookToCart } from './actions/addBookToCart';
 import { TopMenu } from './components/TopMenu';
 import { Books } from './components/Books';
 import { Sort } from './components/Sort';
@@ -34,8 +35,7 @@ const searchBooks = (books, sortBy, filterBy) => {
   return sortBooks(filterBooks(books, filterBy), sortBy);
 }
 const App = props => {
-  const { books, isReady, setBooks, setSort, setFilter, sortBy, filterBy, totalPrice, totalAmount } = props;
-  console.log(books)
+  const { books, isReady, setBooks, setSort, setFilter, sortBy, filterBy, totalPrice, totalAmount, addBookToCart, cartBooks, addCount } = props;
   useEffect(() => {
     axios.get('/books.json').then(({ data }) => {
       setBooks(data);
@@ -45,7 +45,7 @@ const App = props => {
     <Container>
       <TopMenu totalPrice={totalPrice} totalAmount={totalAmount} />
       <Sort setSort={setSort} setFilter={setFilter} sortBy={sortBy} filterBy={filterBy} />
-      <Books books={books} isReady={isReady} />
+      <Books books={books} isReady={isReady} addBookToCart={addBookToCart} cartBooks={cartBooks} addCount={addCount} />
     </Container>
   )
 }
@@ -55,6 +55,8 @@ const mapStateToProps = ({ books, sort, filter, cart }) => ({
   filterBy: filter.filterBy,
   sortBy: sort.sortBy,
   totalPrice: cart.books.reduce((total, book) => total + book.price, 0),
-  totalAmount: cart.books.length
+  totalAmount: cart.books.length,
+  cartBooks: cart.books,
+  addCount: 0
 })
-export default connect(mapStateToProps, { setBooks, setSort, setFilter })(App);
+export default connect(mapStateToProps, { setBooks, setSort, setFilter, addBookToCart })(App);

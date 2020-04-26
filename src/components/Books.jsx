@@ -2,8 +2,8 @@ import React from 'react'
 import { Card, Icon, Image, Button } from 'semantic-ui-react'
 
 
-export const Books = ({ isReady, books }) => {
-    console.log(books)
+export const Books = ({ isReady, books, addBookToCart, addCount }) => {
+
     return (
         !isReady ? "Загрузка..." :
             <Card.Group itemsPerRow={4}>
@@ -20,7 +20,7 @@ export const Books = ({ isReady, books }) => {
                         {book.price}
                     </Card.Content>
                     <Card.Content extra>
-                        <Button>Добавить в корзину</Button>
+                        <Button onClick={() => addBookToCart(book)}><span onClick={() => addCount(book.id)}>Добавить в корзину {`(${addCount})`}</span></Button>
                     </Card.Content>
                 </Card>)}
             </Card.Group>
