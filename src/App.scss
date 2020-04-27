@@ -2,7 +2,9 @@ body {
     margin-top: 20px;
 }
 .card {
-    // min-height: 550px;
+    .extra {
+        text-align: center;
+    }
     .content {
         min-height: 150px;
     }

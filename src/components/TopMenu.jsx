@@ -1,23 +1,29 @@
 import React from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Popup } from 'semantic-ui-react'
+import { CartList } from './CartList'
 
 
-export const TopMenu = ({ totalPrice, totalAmount }) => {
+export const TopMenu = ({ totalPrice, totalAmount, cart, removeBookFromCart }) => {
     return (
         <Menu>
             <Menu.Item
-                name='browse'>
+                name='shop'>
                 Магазин книг
                 </Menu.Item>
             <Menu.Menu position='right'>
                 <Menu.Item
-                    name='submit' >
+                    name='total' >
                     Итого :  &nbsp; <b>{totalPrice}</b> &nbsp; руб.
                 </Menu.Item>
-                <Menu.Item
-                    name='signup'>
-                    Корзина (<b>{totalAmount}</b>)
-                 </Menu.Item>
+                <Popup trigger={
+                    <Menu.Item
+                        name='cart'>
+                        Корзина (<b>{totalAmount}</b>)
+                        </Menu.Item>}
+                    content={cart && cart.map(cart => <CartList removeBookFromCart={removeBookFromCart}{...cart} />)}
+                    on='click'
+                />
+
             </Menu.Menu>
         </Menu>
     )

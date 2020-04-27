@@ -12,7 +12,7 @@ export const cart = (state = initialState, action) => {
                     action.payload
                 ]
             }
-        case "REMOVE_BOOK":
+        case "REMOVE_BOOK_FROM_CART":
             return {
                 ...state,
                 books: state.books.filter(book => book.id !== action.payload)
