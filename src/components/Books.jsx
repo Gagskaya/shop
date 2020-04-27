@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, Icon, Image, Button } from 'semantic-ui-react'
 
 
-export const Books = ({ book, addBookToCart, cart, removeBookFromCart }) => {
+export const Books = ({ book, addBookToCart, cart }) => {
     const addedCount = cart.reduce((total, item) => total + (book.id === item.id ? 1 : 0), 0)
     return (
         <Card>
@@ -19,7 +19,6 @@ export const Books = ({ book, addBookToCart, cart, removeBookFromCart }) => {
             </Card.Content>
             <Card.Content extra>
                 <Button onClick={() => addBookToCart(book)}><span>Добавить в корзину {addedCount > 0 && `(${addedCount})`}</span> </Button>
-                <Button onClick={() => removeBookFromCart(book.id)}><span>Удалить из корзины</span> </Button>
             </Card.Content>
         </Card>
     )

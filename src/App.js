@@ -50,7 +50,7 @@ const App = props => {
       <Sort setSort={setSort} setFilter={setFilter} sortBy={sortBy} filterBy={filterBy} />
       <Card.Group itemsPerRow={4}>
         {
-          isReady ? books && books.map(book => <Books book={book} key={book.id} removeBookFromCart={removeBookFromCart} addBookToCart={addBookToCart} cart={cart} addedCount={addedCount} />)
+          isReady ? books && books.map(book => <Books book={book} key={book.id} addBookToCart={addBookToCart} cart={cart} addedCount={addedCount} />)
             : 'Загрузка...'}
       </Card.Group>
 
