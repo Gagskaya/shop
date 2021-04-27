@@ -1,12 +1,16 @@
-import React from 'react'
-import { Menu, Input } from 'semantic-ui-react'
-
+import React from "react";
+import { useDispatch } from "react-redux";
+import { Menu, Input } from "semantic-ui-react";
 
 export const Filter = ({ setFilter, filterBy }) => {
-    return (
-        <Menu.Item>
-            <Input placeholder="Введите запрос" value={filterBy} onChange={e => setFilter(e.target.value)} >
-            </Input>
-        </Menu.Item>
-    )
-}
+  const dispatch = useDispatch();
+  return (
+    <Menu.Item>
+      <Input
+        placeholder="Введите запрос"
+        value={filterBy}
+        onChange={(e) => dispatch(setFilter(e.target.value))}
+      ></Input>
+    </Menu.Item>
+  );
+};
